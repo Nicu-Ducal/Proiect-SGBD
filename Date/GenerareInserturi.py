@@ -45,7 +45,7 @@ def generate_dates(number, out):
 
 
 # Populari
-def populate_locatie(path, out):
+def generate_locatie(path, out):
     csv_file = open(path, 'r')
     output = open(out, 'w')
 
@@ -67,7 +67,7 @@ def populate_locatie(path, out):
     output.close()
 
 
-def populate_client(path, out):
+def generate_client(path, out):
     csv_file = open(path, 'r')
     output = open(out, 'w')
 
@@ -93,7 +93,7 @@ def populate_client(path, out):
     output.close()
 
 
-def populate_proprietar(path, out):
+def generate_proprietar(path, out):
     csv_file = open(path, 'r')
     output = open(out, 'w')
 
@@ -118,7 +118,7 @@ def populate_proprietar(path, out):
     output.close()
 
 
-def populate_angajat(path, out):
+def generate_angajat(path, out):
     csv_file = open(path, 'r')
     output = open(out, 'w')
 
@@ -158,7 +158,7 @@ def populate_angajat(path, out):
 
 # generate_dates(194, dates_output)
 # Generare inserturi
-# populate_locatie(path_locatie, output)
-# populate_client(path_client, output)
-# populate_proprietar(path_proprietar, output)
-populate_angajat(path_angajat, output)
+# generate_locatie(path_locatie, output)
+# generate_client(path_client, output)
+# generate_proprietar(path_proprietar, output)
+generate_angajat(path_angajat, output)
