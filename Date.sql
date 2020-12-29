@@ -482,15 +482,17 @@ start with 5;
 
 select * from angajat where job = 'Agent imobiliar';
 
-insert into rezervare_locuinta values(seq_rez_loc.nextval, 1, 1, 2, to_date('01-10-2020', 'DD-MM-YYYY'), to_date('01-01-2021', 'DD-MM-YYYY'), to_date('05-01-2020', 'DD-MM-YYYY'), 'Rezervat', 13);
+insert into rezervare_locuinta values(seq_rez_loc.nextval, 1, 1, 2, to_date('01-10-2020', 'DD-MM-YYYY'), to_date('01-01-2021', 'DD-MM-YYYY'), to_date('05-01-2021', 'DD-MM-YYYY'), 'Rezervat', 13);
 insert into rezervare_locuinta values(seq_rez_loc.nextval, 1, 5, 4, to_date('12-11-2020', 'DD-MM-YYYY'), to_date('20-12-2020', 'DD-MM-YYYY'), to_date('30-12-2020', 'DD-MM-YYYY'), 'Cazat', 14);
 insert into rezervare_locuinta values(seq_rez_loc.nextval, 4, 2, 1, to_date('02-11-2020', 'DD-MM-YYYY'), to_date('01-12-2020', 'DD-MM-YYYY'), to_date('31-12-2020', 'DD-MM-YYYY'), 'Cazat', 14);
-insert into rezervare_locuinta values(seq_rez_loc.nextval, 6, 10, 2, to_date('30-08-2020', 'DD-MM-YYYY'), to_date('12-02-2021', 'DD-MM-YYYY'), to_date('15-02-2020', 'DD-MM-YYYY'), 'Rezervat', 20);
+insert into rezervare_locuinta values(seq_rez_loc.nextval, 6, 10, 2, to_date('30-08-2020', 'DD-MM-YYYY'), to_date('12-02-2021', 'DD-MM-YYYY'), to_date('15-02-2021', 'DD-MM-YYYY'), 'Rezervat', 20);
+insert into rezervare_locuinta values(seq_rez_loc.nextval, 2, 7, 2, to_date('04-12-2020', 'DD-MM-YYYY'), to_date('10-12-2020', 'DD-MM-YYYY'), to_date('10-01-2021', 'DD-MM-YYYY'), 'Cazat', 15);
+insert into rezervare_locuinta values(seq_rez_loc.nextval, 3, 9, 2, to_date('27-09-2020', 'DD-MM-YYYY'), to_date('23-01-2021', 'DD-MM-YYYY'), to_date('30-01-2021', 'DD-MM-YYYY'), 'Rezervat', 20);
 
 
-insert into istoric_rezervare_locuinta values(1, 1, 8, 3, to_date('12-10-2020', 'DD-MM-YYYY'), to_date('19-10-2020', 'DD-MM-YYYY'), 18);
-insert into istoric_rezervare_locuinta values(2, 4, 9, 2, to_date('01-10-2020', 'DD-MM-YYYY'), to_date('25-10-2020', 'DD-MM-YYYY'), 20);
-insert into istoric_rezervare_locuinta values(3, 5, 4, 2, to_date('15-09-2020', 'DD-MM-YYYY'), to_date('17-09-2020', 'DD-MM-YYYY'), 20);
+insert into istoric_rezervare_locuinta values(1, 1, 8, 3, to_date('12-06-2020', 'DD-MM-YYYY'), to_date('12-10-2020', 'DD-MM-YYYY'), to_date('19-10-2020', 'DD-MM-YYYY'), 18);
+insert into istoric_rezervare_locuinta values(2, 4, 9, 2, to_date('30-12-2019', 'DD-MM-YYYY'), to_date('01-10-2020', 'DD-MM-YYYY'), to_date('25-10-2020', 'DD-MM-YYYY'), 20);
+insert into istoric_rezervare_locuinta values(3, 5, 4, 2, to_date('01-02-2020', 'DD-MM-YYYY'), to_date('15-09-2020', 'DD-MM-YYYY'), to_date('17-09-2020', 'DD-MM-YYYY'), 20);
 
 select * from rezervare_locuinta;
 select * from istoric_rezervare_locuinta;
@@ -500,14 +502,14 @@ create sequence seq_rez_hotel
 increment by 1
 start with 5;
 
-insert into rezervare_hotel values (seq_rez_hotel.nextval, 1, 1, 2, to_date('05-11-2020', 'DD-MM-YYYY'), to_date('05-01-2021', 'DD-MM-YYYY'), to_date('06-01-2020', 'DD-MM-YYYY'), 'Rezervat', 15);
+insert into rezervare_hotel values (seq_rez_hotel.nextval, 1, 1, 2, to_date('05-11-2020', 'DD-MM-YYYY'), to_date('05-01-2021', 'DD-MM-YYYY'), to_date('06-01-2021', 'DD-MM-YYYY'), 'Rezervat', 15);
 insert into rezervare_hotel values (seq_rez_hotel.nextval, 2, 3, 3, to_date('01-12-2020', 'DD-MM-YYYY'), to_date('12-12-2020', 'DD-MM-YYYY'), to_date('30-12-2020', 'DD-MM-YYYY'), 'Cazat', 16);
-insert into rezervare_hotel values (seq_rez_hotel.nextval, 8, 7, 1, to_date('10-09-2020', 'DD-MM-YYYY'), to_date('03-01-2021', 'DD-MM-YYYY'), to_date('10-01-2020', 'DD-MM-YYYY'), 'Rezervat', 17);
+insert into rezervare_hotel values (seq_rez_hotel.nextval, 8, 7, 1, to_date('10-09-2020', 'DD-MM-YYYY'), to_date('03-01-2021', 'DD-MM-YYYY'), to_date('10-01-2021', 'DD-MM-YYYY'), 'Rezervat', 17);
 
 
-insert into istoric_rezervare_hotel values(1, 5, 4, 2, to_date('01-12-2020', 'DD-MM-YYYY'), to_date('07-12-2020', 'DD-MM-YYYY'), 20);
-insert into istoric_rezervare_hotel values(2, 8, 3, 4, to_date('15-09-2020', 'DD-MM-YYYY'), to_date('25-09-2020', 'DD-MM-YYYY'), 17);
-insert into istoric_rezervare_hotel values(3, 4, 11, 3, to_date('03-11-2020', 'DD-MM-YYYY'), to_date('06-11-2020', 'DD-MM-YYYY'), 16);
+insert into istoric_rezervare_hotel values(1, 5, 4, 2, to_date('01-06-2020', 'DD-MM-YYYY'), to_date('01-12-2020', 'DD-MM-YYYY'), to_date('07-12-2020', 'DD-MM-YYYY'), 20);
+insert into istoric_rezervare_hotel values(2, 8, 3, 4, to_date('03-06-2020', 'DD-MM-YYYY'), to_date('15-09-2020', 'DD-MM-YYYY'), to_date('25-09-2020', 'DD-MM-YYYY'), 17);
+insert into istoric_rezervare_hotel values(3, 4, 11, 3, to_date('23-03-2020', 'DD-MM-YYYY'), to_date('03-11-2020', 'DD-MM-YYYY'), to_date('06-11-2020', 'DD-MM-YYYY'), 16);
 
 select * from rezervare_hotel;
 select * from istoric_rezervare_hotel;
