@@ -79,9 +79,9 @@ begin
   end if;  
 exception
   when lipsa_sediu then
-    raise_application_error('-20021', 'Nu exista nici un sediu ;a acesta locatie');
+    raise_application_error('-20021', 'Nu exista nici un sediu la aceasta locatie');
   when lipsa_agenti then
-    raise_application_error('-20020', 'Nu lucreaza nici un agent imobiliar la aceasa locatie');
+    raise_application_error('-20020', 'Nu lucreaza nici un agent imobiliar la aceasta locatie');
   when others then
     raise_application_error('-20020', 'Alta eroare');
 end informatii_rezervari_locale;

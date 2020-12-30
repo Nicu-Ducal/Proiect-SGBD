@@ -106,6 +106,7 @@ begin
       dbms_output.put_line('');
     end if;
   end loop;
+  close c_loc;
   
   if good = 0 then 
     dbms_output.put_line('Nu au fost identificate locuinte care ar indeplini criteriului');

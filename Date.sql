@@ -471,8 +471,11 @@ insert into serviciu_hotel values (10, 2);
 insert into serviciu_hotel values (20, 3);
 insert into serviciu_hotel values (80, 5);
 insert into serviciu_hotel values (90, 4);
+insert into serviciu_hotel values (70, 3);
+insert into serviciu_hotel values (60, 5);
+insert into serviciu_hotel values (70, 4);
 
-select * from serviciu_hotel;
+select * from serviciu_hotel order by serviciu_id;
 
 --Date pentru Rezervari:
 --Locuinte:
