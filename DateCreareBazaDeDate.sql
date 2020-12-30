@@ -131,7 +131,8 @@ create table rezervare_locuinta (
   angajat_id number not null,
   constraint fk1_rezervare_locuinta foreign key(locuinta_id) references locuinta(locuinta_id) on delete cascade,
   constraint fk2_rezervare_locuinta foreign key(client_id) references client(client_id) on delete cascade,
-  constraint fk3_rezervare_locuinta foreign key(angajat_id) references angajat(angajat_id) on delete cascade);
+  constraint fk3_rezervare_locuinta foreign key(angajat_id) references angajat(angajat_id) on delete cascade,
+  constraint ck1_rezervare_locuinta check(data_rezervare <= data_cazare and data_cazare <= data_decazare));
   
 --Tabelul Rezervare_Hotel
 create table rezervare_hotel (
@@ -146,7 +147,8 @@ create table rezervare_hotel (
   angajat_id number not null,
   constraint fk1_rezervare_hotel foreign key(camera_id) references camera(camera_id) on delete cascade,
   constraint fk2_rezervare_hotel foreign key(client_id) references client(client_id) on delete cascade,
-  constraint fk3_rezervare_hotel foreign key(angajat_id) references angajat(angajat_id) on delete cascade);
+  constraint fk3_rezervare_hotel foreign key(angajat_id) references angajat(angajat_id) on delete cascade,
+  constraint ck1_rezervare_hotel check(data_rezervare <= data_cazare and data_cazare <= data_decazare));
 
 --Tabelul Istoric_Rezervare_locuinta
 create table istoric_rezervare_locuinta (
@@ -160,7 +162,8 @@ create table istoric_rezervare_locuinta (
   angajat_id number not null,
   constraint fk1_istoric_rezervare_locuinta foreign key(locuinta_id) references locuinta(locuinta_id) on delete cascade,
   constraint fk2_istoric_rezervare_locuinta foreign key(client_id) references client(client_id) on delete cascade,
-  constraint fk3_istoric_rezervare_locuinta foreign key(angajat_id) references angajat(angajat_id) on delete cascade);
+  constraint fk3_istoric_rezervare_locuinta foreign key(angajat_id) references angajat(angajat_id) on delete cascade,
+  constraint ck1_istoric_rezervare_locuinta check(data_rezervare <= data_cazare and data_cazare <= data_decazare));
 
 --Tabelul Istoric_Rezervare_Hotel
 create table istoric_rezervare_hotel (
@@ -174,5 +177,6 @@ create table istoric_rezervare_hotel (
   angajat_id number not null,
   constraint fk1_istoric_rezervare_hotel foreign key(camera_id) references camera(camera_id) on delete cascade,
   constraint fk2_istoric_rezervare_hotel foreign key(client_id) references client(client_id) on delete cascade,
-  constraint fk3_istoric_rezervare_hotel foreign key(angajat_id) references angajat(angajat_id) on delete cascade);
+  constraint fk3_istoric_rezervare_hotel foreign key(angajat_id) references angajat(angajat_id) on delete cascade,
+  constraint ck1_istoric_rezervare_hotel check(data_rezervare <= data_cazare and data_cazare <= data_decazare));
   
