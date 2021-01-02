@@ -7,67 +7,32 @@
 set serveroutput on;
 
 --Cerinta 10
---Triggerul de comanda va
+--Compania lucreaza de marti pana sambata, de la ora 10 pâna la 18, fara pauza de masa.
+--Trebuie sa creeam un trigger care permite adaugarea rezervarilor in tabelele rezervarilor
+--doar in acest interval orar.
+create or replace trigger trig10_orar_rezervare_loc 
+  before insert or update or delete on rezervare_locuinta
+begin 
+  if (to_char(sysdate, 'D') between 1 and 2
+    or to_char(sysdate, 'HH24') not between 10 and 18) then
+      raise_application_error(-20100, 'Compania nu lucreaza in acest moment, reveniti altadata!');
+  end if;
+end;
+/
 
---create or replace trigger trig10_comanda 
---before
---is
---
---begin 
---
---end;
---/
+create or replace trigger trig10_orar_rezervare_hot 
+  before insert or update or delete on rezervare_hotel
+begin 
+  if (to_char(sysdate, 'D') between 1 and 2 
+    or to_char(sysdate, 'HH24') not between 10 and 18) then
+      raise_application_error(-20100, 'Compania nu lucreaza in acest moment, reveniti altadata!');
+  end if;
+end;
+/
+
+insert into rezervare_locuinta values(20, 1, 1, 2, to_date('01-10-2021', 'DD-MM-YYYY'), to_date('01-01-2022', 'DD-MM-YYYY'), to_date('05-01-2022', 'DD-MM-YYYY'), 'Rezervat', 13);
 
 --Cerinta 11
---Incompleta:
---Triggerul acesta va efectua urmatoarele operatii:
---Atunci cand are loc una din operatiile insert, update, sau delete din tabelele rezervarilor
---se verifica daca data decazarii este mai mica decat data curenta. Daca da,
---se sterge din tabelul Rezervarilor si se adauga in tabelul Istoric;
---create or replace trigger trig11_rezervare_locatie
---  after insert or update or delete on rezervare_locuinta
---  for each row
---begin
---  --Daca data de decazare a trecut, atunci stergem din acest tabel si inseram in 
---  --istoric
---  if :NEW.data_decazare < sysdate then
---    insert into istoric_rezervare_locuinta values (:NEW.rezervare_id, 
---      :NEW.locuinta_id, :NEW.client_id, :NEW.numar_persoane, :NEW.data_rezervare, 
---      :NEW.data_cazare, :NEW.data_decazare, :NEW.angajat_id);
---      
---    delete from rezervare_locuinta where rezervare_id = :NEW.rezervare_id;
---  --Daca data de cazare este azi sau a trecut de azi, dar inca nu e decazarea
---  --schimbam statusul 'Rezervat' in 'Cazat' 
---  elsif :NEW.data_cazare < sysdate then
---    update rezervare_locuinta
---    set status = 'Cazat'
---    where rezervare_id = :NEW.rezervare_id;
---  end if;
---end;
---/
---
---create or replace trigger trig11_rezervare_hotel
---  after insert or update or delete on rezervare_hotel
---  for each row
---begin
---  --Daca data de decazare a trecut, atunci stergem din acest tabel si inseram in 
---  --istoric
---  if :NEW.data_decazare < sysdate then
---    insert into istoric_rezervare_hotel values (:NEW.rezervare_id, 
---      :NEW.camera_id, :NEW.client_id, :NEW.numar_persoane, :NEW.data_rezervare, 
---      :NEW.data_cazare, :NEW.data_decazare, :NEW.angajat_id);
---      
---    delete from rezervare_hotel where rezervare_id = :NEW.rezervare_id;
---  --Daca data de cazare este azi sau a trecut de azi, dar inca nu e decazarea
---  --schimbam statusul 'Rezervat' in 'Cazat' 
---  elsif :NEW.data_cazare < sysdate then
---    update rezervare_hotel
---    set status = 'Cazat'
---    where rezervare_id = :NEW.rezervare_id;
---  end if;
---end;
---/
-
 --Avem nevoie de un trigger sa tinem cont de numarul angajatilor in sedii
 create or replace trigger trig11_sediu
   after insert or update or delete on angajat
@@ -107,4 +72,26 @@ where angajat_id = 2;
 rollback;
 
 --Cerinta 12
+--Pentru ca nimeni in afara de administratorul bazei de date nu trebuie sa 
+--creeze/stearga tabele, sa definim un lucru care nu permite acest lucru.
+--Observatie: pentru exemplul acesta vom preseupune ca username-ul administratorului
+--este Admin
+--O alta idee de trigger ar fi unul pentru gestionarea erorilor.
 
+create or replace trigger trig12_tabele
+  before create or drop or alter on schema
+begin
+  --Eventual se schimba numele de 'Admin' pe numele utilizatorului
+  --care este administrator
+  if user <> upper('Admin') then
+    raise_application_error(-20500, 'Nu esti administratorul bazei de date');
+  end if;
+end;
+/
+
+--Testare trigger
+create table Erori 
+  (eroare varchar2(300),
+   user_id varchar2(30));
+
+drop trigger trig12_tabele;
